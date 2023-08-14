@@ -2,23 +2,31 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 
+
 const schema = Yup.object().shape({
   Name: Yup.string()
-    .min(4, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  Number: Yup.number()
-    .required('Required'),
+  .matches(/^[A-Za-zА-Яа-яЁё\s]+$/, 'Invalid name')
+  .required('This is required!')
+  .min(4, 'Too Short!')
+  .max(50, 'Too Long!'),
+  Number: Yup.string()
+  .matches(/^\+?[0-9]{1,3}-?[0-9]/, 'Invalid number')
+  .required('This is required!') 
+  .min(6, 'Too Short!')
+  .max(20, 'Too Long!'),
 });
 
-export const Phonebook = ({ contacts,addPhoneCard }) => {
+export const ContactForm = ({
+  
+  addPhoneCard,
+  }) => {
   return (
-    <div>
-      <h2>Phonebook</h2>
+    <>
+      
       <Formik
         initialValues={{
           Name: '',
-          Number:0,
+          Number: '',
         }}
         validationSchema={schema}
         onSubmit={value => {
@@ -33,24 +41,15 @@ export const Phonebook = ({ contacts,addPhoneCard }) => {
           </label>
           <label>
             Number
-            <Field name="Number" />
+            <Field type='tel' name="Number" />
             <ErrorMessage name="Number" component="div" />
           </label>
 
           <button type="submit">Add contact</button>
         </Form>
       </Formik>
-      {contacts.length!==0 &&
-      <>
-      <h2>Contacts</h2>
       
-      </>
-      }
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>{contact.Name}:{contact.Number}</li>
-        ))}
-      </ul>
-    </div>
+      
+    </>
   );
 };
