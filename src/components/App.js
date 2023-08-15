@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ContactForm} from './Phonebook/ContactForm';
-import { Filter } from './Phonebook/Filter';
-import { PhoneList } from './Phonebook/PhoneList';
+import { ContactForm} from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
+import { PhoneList } from './Phonelist/PhoneList';
+import { Container } from './ContactForm/StyledContactFrom';
 
 export class App extends Component {
   state = {
@@ -43,7 +44,7 @@ export class App extends Component {
   render() {
     const filtered = this.getFiltered();
     return (
-      <>
+      <Container>
         <h1>Phonebook</h1>
         <ContactForm
           contacts={filtered}
@@ -60,10 +61,12 @@ export class App extends Component {
               changeFilter={this.changefilterPhone}
               phoneFilter={this.state.filter}
             />
+            <PhoneList contacts={filtered} deleteContact={this.deleteCard} />
           </>
+          
         )}
-        <PhoneList contacts={filtered} deleteContact={this.deleteCard} />
-      </>
+        
+      </Container>
     );
   }
 }
