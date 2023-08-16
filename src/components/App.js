@@ -23,6 +23,7 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newCard],
     }));
+    
   };
   changefilterPhone = value => {
     this.setState({

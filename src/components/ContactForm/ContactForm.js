@@ -25,8 +25,9 @@ export const ContactForm = ({ addPhoneCard }) => {
           Number: '',
         }}
         validationSchema={schema}
-        onSubmit={value => {
+        onSubmit={(value,actions) => {
           addPhoneCard({ ...value, id: nanoid() });
+          actions.resetForm();
         }}
       >
         <StyledForm>
