@@ -1,14 +1,13 @@
-import { Formik,ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
-import { StyledForm, StyledFild, AddButton } from './StyledContactFrom'
-
+import { StyledForm, StyledFild, AddButton } from './StyledContactFrom';
 
 const schema = Yup.object().shape({
   Name: Yup.string()
     .matches(/^[A-Za-zА-Яа-яЁё\s]+$/, 'Invalid name')
     .required('This is required!')
-    .min(4, 'Too Short!')
+    .min(1, 'Too Short!')
     .max(50, 'Too Long!'),
   Number: Yup.string()
     .matches(/^\+?[0-9]{1,3}-?[0-9]+$/, 'Invalid number')
@@ -17,13 +16,9 @@ const schema = Yup.object().shape({
     .max(20, 'Too Long!'),
 });
 
-export const ContactForm = ({
-  
-  addPhoneCard,
-  }) => {
+export const ContactForm = ({ addPhoneCard }) => {
   return (
     <>
-      
       <Formik
         initialValues={{
           Name: '',
@@ -42,15 +37,13 @@ export const ContactForm = ({
           </label>
           <label>
             Number
-            <StyledFild type='tel' name="Number" />
+            <StyledFild type="tel" name="Number" />
             <ErrorMessage name="Number" component="div" />
           </label>
 
           <AddButton type="submit">Add contact</AddButton>
         </StyledForm>
       </Formik>
-      
-      
     </>
   );
 };

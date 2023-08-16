@@ -13,7 +13,7 @@ export const StyledList = styled.ul`
   width: 200px;
   padding: 60px;
   border-radius: 10px;
-  text-transform: uppercase;
+  
   font-size: 18px;
   font-weight: 500;
 `;

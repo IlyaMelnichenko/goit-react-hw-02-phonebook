@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ContactForm} from './ContactForm/ContactForm';
+import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { PhoneList } from './Phonelist/PhoneList';
 import { Container } from './ContactForm/StyledContactFrom';
@@ -46,14 +46,7 @@ export class App extends Component {
     return (
       <Container>
         <h1>Phonebook</h1>
-        <ContactForm
-          contacts={filtered}
-          addPhoneCard={this.addPhoneCard}
-          phoneFilter={this.state.filter}
-          changeFilter={this.changefilterPhone}
-          shower={this.state.contacts}
-          deleteContact={this.deleteCard}
-        />
+        <ContactForm addPhoneCard={this.addPhoneCard} />
         {this.state.contacts.length !== 0 && (
           <>
             <h2>Contacts</h2>
@@ -63,9 +56,7 @@ export class App extends Component {
             />
             <PhoneList contacts={filtered} deleteContact={this.deleteCard} />
           </>
-          
         )}
-        
       </Container>
     );
   }
